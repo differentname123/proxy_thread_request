@@ -552,42 +552,42 @@ def test():
 
     # get_exist_user()
 
-    user_list = get_user_list("user_dict/bord_top_user.txt")
-    threads = []
-    max_thread_num = 100
-
-    for x in range(0, max_thread_num):
-        name = 'login-thread_%s' % x
-        threads.append(threading.Thread(
-            target=thread_get_exist_user, args=(x, user_list), name=name))
-    for t in threads:
-        t.start()
-    for t in threads:
-        t.join()
-
-    global exist_user_list
-    global un_exist_user_list
-    with open("user_dict/exist_board_top_user.txt", 'w') as writer:
-        writer.writelines(exist_user_list)
-    with open("user_dict/un_exist_board_top_user.txt", 'w') as writer:
-        writer.writelines(un_exist_user_list)
-
-    # user_list = get_user_list("user_dict/diren.txt")
-    # global global_pass_word_list
-    # # global_pass_word_list = get_usered_list("user_dict/success_back.txt")
-    # global_pass_word_list = get_password_list("text/new_sort_common_passord.txt")
-    #
+    # user_list = get_user_list("user_dict/bord_top_user.txt")
     # threads = []
-    # max_thread_num = 10
+    # max_thread_num = 100
     #
     # for x in range(0, max_thread_num):
     #     name = 'login-thread_%s' % x
     #     threads.append(threading.Thread(
-    #         target=thread_load, args=(x, user_list), name=name))
+    #         target=thread_get_exist_user, args=(x, user_list), name=name))
     # for t in threads:
     #     t.start()
     # for t in threads:
     #     t.join()
+    #
+    # global exist_user_list
+    # global un_exist_user_list
+    # with open("user_dict/exist_board_top_user.txt", 'w') as writer:
+    #     writer.writelines(exist_user_list)
+    # with open("user_dict/un_exist_board_top_user.txt", 'w') as writer:
+    #     writer.writelines(un_exist_user_list)
+
+    user_list = get_user_list("user_dict/exist_board_top_user.txt")
+    global global_pass_word_list
+    # global_pass_word_list = get_usered_list("user_dict/success_back.txt")
+    global_pass_word_list = get_password_list("text/new_sort_common_passord.txt")
+
+    threads = []
+    max_thread_num = 10
+
+    for x in range(0, max_thread_num):
+        name = 'login-thread_%s' % x
+        threads.append(threading.Thread(
+            target=thread_load, args=(x, user_list), name=name))
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
 
 
     pass
