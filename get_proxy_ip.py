@@ -158,7 +158,6 @@ def get_proxy_ip():
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.55 Safari/537.36',
     }
 
-    "https://proxy.seofangfa.com/"
     url = "https://proxy.seofangfa.com/"
     try:
 
@@ -176,18 +175,148 @@ def get_proxy_ip():
     except Exception as e:
         print "get_proxy_ip error %s" % traceback.format_exc()
 
-    url = "https://proxy.seofangfa.com/"
+    url = "http://www.66ip.cn/index.html"
+    import re
+
     try:
 
         response = requests.get(url, headers=headers)
         data = response.content
+        ip_result = re.findall(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}</td><td>\d+\b", data)
         ip_port_list = []
-        for line in data.split('\n'):
+        for line in ip_result:
+            line = line.strip()
             if "</td><td>" in line:
                 port = line.split("</td><td>")[1]
-                ip_data = line.split("</td><td>")[0].split("<tr><td>")[1]
+                ip_data = line.split("</td><td>")[0]
                 ip_port = "%s:%s\n" % (ip_data, port)
                 ip_port_list.append(ip_port)
+        with open("text/all_proxy.txt", 'a') as writer:
+            writer.writelines(ip_port_list)
+    except Exception as e:
+        print "get_proxy_ip error %s" % traceback.format_exc()
+
+
+    url = "http://www.ip3366.net/"
+    try:
+        count_index = 0
+        response = requests.get(url, headers=headers)
+        data = response.content
+        ip_port_list = []
+        data_arr = data.split('\n')
+        while count_index < len(data_arr):
+            line = data_arr[count_index]
+            ip_result = re.findall(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b", line)
+            if len(ip_result) == 1:
+                count_index += 1
+                port = data_arr[count_index].split("</td>")[0].split("<td>")[1].strip()
+                ip_data = ip_result[0]
+                ip_port = "%s:%s\n" % (ip_data, port)
+                ip_port_list.append(ip_port)
+            count_index += 1
+
+
+        with open("text/all_proxy.txt", 'a') as writer:
+            writer.writelines(ip_port_list)
+    except Exception as e:
+        print "get_proxy_ip error %s" % traceback.format_exc()
+
+    url = "http://www.kxdaili.com/dailiip/1/1.html"
+    try:
+        count_index = 0
+        response = requests.get(url, headers=headers)
+        data = response.content
+        ip_port_list = []
+        data_arr = data.split('\n')
+        while count_index < len(data_arr):
+            line = data_arr[count_index]
+            ip_result = re.findall(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b", line)
+            if len(ip_result) == 1:
+                count_index += 1
+                port = data_arr[count_index].split("</td>")[0].split("<td>")[1].strip()
+                ip_data = ip_result[0]
+                ip_port = "%s:%s\n" % (ip_data, port)
+                ip_port_list.append(ip_port)
+            count_index += 1
+
+
+        with open("text/all_proxy.txt", 'a') as writer:
+            writer.writelines(ip_port_list)
+    except Exception as e:
+        print "get_proxy_ip error %s" % traceback.format_exc()
+
+
+    url = "http://ip.yqie.com/ipproxy.htm"
+    try:
+        count_index = 0
+        response = requests.get(url, headers=headers)
+        data = response.content
+        ip_port_list = []
+        data_arr = data.split('\n')
+        while count_index < len(data_arr):
+            line = data_arr[count_index]
+            ip_result = re.findall(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b", line)
+            if len(ip_result) == 1:
+                count_index += 1
+                port = data_arr[count_index].split("</td>")[0].split("<td>")[1].strip()
+                ip_data = ip_result[0]
+                ip_port = "%s:%s\n" % (ip_data, port)
+                ip_port_list.append(ip_port)
+            count_index += 1
+
+
+        with open("text/all_proxy.txt", 'a') as writer:
+            writer.writelines(ip_port_list)
+    except Exception as e:
+        print "get_proxy_ip error %s" % traceback.format_exc()
+
+
+    url = "https://www.89ip.cn/"
+    try:
+        count_index = 0
+        ip_flag = False
+        response = requests.get(url, headers=headers)
+        data = response.content
+        ip_port_list = []
+        data_arr = data.split('\n')
+        while count_index < len(data_arr):
+            line = data_arr[count_index]
+            ip_result = re.findall(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b", line)
+            if len(ip_result) == 1:
+                count_index += 2
+                port = data_arr[count_index].split("</td>")[0].strip()
+                ip_data = ip_result[0]
+                ip_port = "%s:%s\n" % (ip_data, port)
+                ip_port_list.append(ip_port)
+            count_index += 1
+
+
+        with open("text/all_proxy.txt", 'a') as writer:
+            writer.writelines(ip_port_list)
+    except Exception as e:
+        print "get_proxy_ip error %s" % traceback.format_exc()
+
+    url = "https://free.kuaidaili.com/free/intr"
+    try:
+        count_index = 0
+        ip_flag = False
+        response = requests.get(url, headers=headers)
+        data = response.content
+        ip_port_list = []
+        data_arr = data.split('\n')
+        while count_index < len(data_arr):
+            line = data_arr[count_index]
+            ip_result = re.findall(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b", line)
+            if len(ip_result) == 1:
+                count_index += 1
+                new_line = data_arr[count_index]
+                port = new_line.split("</td>")[0].split(">")[1].strip()
+                ip_data = ip_result[0]
+                ip_port = "%s:%s\n" % (ip_data, port)
+                ip_port_list.append(ip_port)
+            count_index += 1
+
+
         with open("text/all_proxy.txt", 'a') as writer:
             writer.writelines(ip_port_list)
     except Exception as e:

@@ -147,7 +147,7 @@ def get_login_res_proxy(user, password):
         # print proxy_list_status_map
 
 
-    if response.content.__sizeof__() > 500 and response.status_code == 200 and "小小帝国" in response.content:
+    if response.content.__sizeof__() > 500 and response.status_code == 200 and "小小帝" in response.content:
         result = True
 
     return status_code, result, response.content
@@ -357,10 +357,16 @@ def get_user_list(file_name):
     user_list = set()
     reverse_user_list = []
     jump_flag = False
-    with open(file_name) as lines:
+    deal_user_set = set()
+    with open("user_dict/deal_user.txt") as lines:
         for user in lines:
+            deal_user_set.add(user)
 
-            if len(user.strip()) < 4 or jump_flag:
+
+    with open(file_name) as lines:
+
+        for user in lines:
+            if user in deal_user_set:
                 continue
             user_list.add(user.strip())
 
@@ -443,7 +449,7 @@ def load_proxy():
                     true_proxy = {"http": "http://" + ip_port}
                     proxy_list.append(true_proxy)
                     proxy_list_status_map["%s" % true_proxy] = 0
-        if len(proxy_list) > 3:
+        if len(proxy_list) > 5:
             ok_flag = True
         else:
             print "only %s proxy wait 600s" % len(proxy_list)
