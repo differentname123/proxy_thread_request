@@ -449,11 +449,11 @@ def load_proxy():
                     true_proxy = {"http": "http://" + ip_port}
                     proxy_list.append(true_proxy)
                     proxy_list_status_map["%s" % true_proxy] = 0
-        if len(proxy_list) > 5:
+        if len(proxy_list) > 1:
             ok_flag = True
         else:
-            print "only %s proxy wait 600s" % len(proxy_list)
-            time.sleep(600)
+            print "only %s proxy wait 100s" % len(proxy_list)
+            time.sleep(100)
 
     print "finish load proxy total:%s" % len(proxy_list)
 
@@ -584,7 +584,7 @@ def test():
     global_pass_word_list = get_password_list("text/new_sort_common_passord.txt")
 
     threads = []
-    max_thread_num = 10
+    max_thread_num = 1
 
     for x in range(0, max_thread_num):
         name = 'login-thread_%s' % x

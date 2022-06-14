@@ -41,7 +41,7 @@ def load_proxy():
 
     with open("text/all_proxy.txt", 'w') as writer:
         writer.writelines(all_proxy_set)
-    print "finish load %s" % len(proxy_list)
+    print "finish load %s conect all %s" % (len(proxy_list), len(all_proxy_set))
 
 
 def check_little_empire(ip_port):
